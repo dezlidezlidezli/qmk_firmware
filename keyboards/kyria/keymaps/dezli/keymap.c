@@ -16,7 +16,7 @@
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 #include <stdlib.h>
-#include "dezli.c"
+#include "dezli.h"
 //layers and what their number alias is
 
 enum my_keycodes {

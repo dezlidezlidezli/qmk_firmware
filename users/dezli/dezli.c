@@ -1,5 +1,8 @@
 #include "dezli.h"
 
+bool is_alt_tab_active = false;
+uint16_t alt_tab_timer = 0;
+
 const uint16_t PROGMEM ent_combo[] = {KC_T, KC_N, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_E, KC_O, COMBO_END};
 const uint16_t PROGMEM tab2_combo[] = {KC_O, KC_A, COMBO_END};
@@ -15,10 +18,11 @@ combo_t key_combos[COMBO_COUNT] = {
 #ifdef ENCODER_ENABLE
 
 __attribute__((weak))
-void encoder_update_kb(int8_t index, bool clockwise) {
-}
+void encoder_update_kb(uint8_t index, bool clockwise) {}
 
 void encoder_update_user(uint8_t index, bool clockwise) {
+  encoder_update_kb(index, clockwise);
+
   if (index == 0) { /* First encoder for window movement with command tab and command shift tab - it says alt tab but the function has been replaced*/
     if (clockwise) {
       tap_code(KC__VOLUP);
@@ -43,9 +47,10 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 }
     }
 }
+
 __attribute__((weak))
-void matrix_scan_keymap(void) {
-}
+void matrix_scan_keymap(void) { }
+
 void matrix_scan_user(void) {
     if (is_alt_tab_active) {
         if (timer_elapsed(alt_tab_timer) > 750) {

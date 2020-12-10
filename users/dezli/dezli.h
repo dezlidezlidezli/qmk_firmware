@@ -1,4 +1,4 @@
-#include "quantum.h"
+#pragma once
 #include "quantum.h"
 
 enum combos {
@@ -16,5 +16,10 @@ enum combos {
 #define KC_NUM_SPC LT(_NUM_SYM, KC_SPC)
 #define KC_NAV_BSPC LT(_NAV, KC_BSPC)
 
-bool is_alt_tab_active = false;
-uint16_t alt_tab_timer = 0;
+void encoder_update_kb(uint8_t index, bool clockwise);
+void matrix_scan_keymap(void);
+
+extern bool is_alt_tab_active;
+extern uint16_t alt_tab_timer;
+
+
