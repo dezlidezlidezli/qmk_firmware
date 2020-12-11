@@ -1,5 +1,13 @@
 #pragma once
 #include "quantum.h"
+#include "wrappers.h"
+
+enum layers{
+  _BASE,
+  _NUM_SYM,
+  _NAV,
+  _META,
+};
 
 enum combos {
   TN_ENT,
@@ -21,5 +29,3 @@ void matrix_scan_keymap(void);
 
 extern bool is_alt_tab_active;
 extern uint16_t alt_tab_timer;
-
-
